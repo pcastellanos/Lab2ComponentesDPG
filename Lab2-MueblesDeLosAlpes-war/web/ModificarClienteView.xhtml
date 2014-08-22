@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./main-template.xhtml">
+
+            <ui:define name="body">
+                <h:form>
+                     <h:panelGroup>
+                        <!--Nombre del cliente-->
+                        <h:panelGrid width="100px" columns="1" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                            <h:outputLabel for="txtNombre"
+                                             value="Nombre"/>
+                            <!--Nombre del cliente-->
+                            <h:inputText id="txtNombre"
+                                           size="20"
+                                           maxlength="20"
+                                           label="Nombre"
+                                           value="#{clienteBean.clienteSeleccionado.nombre}"
+                                           required="true"
+                                           style="width: 270px"
+                                           >
+                                <f:validateLength minimum="1"/>
+                            </h:inputText>
+                            <h:message id="nameMsg" for="txtNombre" />
+                        </h:panelGrid>
+                        
+                        <!--Tipo de documento-->
+                        <h:panelGrid width="100px" columns="1" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                            <h:outputLabel for="sltTipoDocumento" value="Tipo de documento"/>
+                            <h:selectOneMenu id="sltTipoCliente" 
+                                             value="#{clienteBean.clienteSeleccionado.tipoDocumento}"
+                                             style="width: 270px"
+                                             disabled="#{clienteBean.clienteSeleccionado.numeroDocumento.length()==0?false:true}">
+                                <f:selectItems value="#{clienteBean.tiposDocumento}"  />
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                        
+                        <!--Número de documento (*)-->
+                        <h:panelGrid width="100px" columns="1" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                            <h:outputLabel for="txtNumDoc" value="Número de documento"/>
+                            <h:inputText id="txtNumDoc"
+                                               size="10"
+                                               maxlength="10"
+                                               label="Teléfono de residencia"
+                                               value="#{clienteBean.clienteSeleccionado.numeroDocumento}"
+                                               disabled="#{clienteBean.clienteSeleccionado.numeroDocumento.length()==0?false:true}"
+                                               style="width: 270px"
+                                               >
+                                <f:validateLength minimum="1"/>
+                            </h:inputText>
+                            <h:message id="numDocMensaje" for="txtNumDoc" />
+                        </h:panelGrid>
+                        
+                        <!--Teléfono de residencia (*)-->
+                        <h:panelGrid width="100px" columns="1" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                            <h:outputLabel for="txtTelefono" value="Teléfono de residencia"/>
+                            <h:inputText id="txtTelefono"
+                                               size="10"
+                                               maxlength="10"
+                                               label="Teléfono de residencia"
+                                               value="#{clienteBean.clienteSeleccionado.telefono}"
+                                               required="true"
+                                               style="width: 270px"
+                                               >
+                                <f:validateLength minimum="1"/>
+                            </h:inputText>
+                            <h:message id="telMensaje" for="txtTelefono" />
+                        </h:panelGrid>
+                        
+                        <!--Email (*)-->
+                        <h:panelGrid width="100px" columns="1" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                            <h:outputLabel for="txtCorreo" value="Correo electronico"/>
+                            <h:inputText id="txtCorreo"
+                                           size="50"
+                                           maxlength="50"
+                                           label="Correo"
+                                           value="#{clienteBean.clienteSeleccionado.correo}"
+                                           required="true"
+                                           style="width: 270px"
+                                           >
+                                <f:validateLength minimum="1"/>
+                            </h:inputText>
+                            <h:message id="correoMensaje" for="txtCorreo" />
+                        </h:panelGrid>
+                        
+                        <!--Teléfono celular-->
+                        <h:panelGrid  width="100px" columns="1" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                            <h:outputLabel for="txtCelular" value="Celular"/>
+                            <h:inputText id="txtCelular"
+                                           size="15"
+                                           maxlength="15"
+                                           label="Número de celular"
+                                           style="width: 270px"
+                                           value="#{clienteBean.clienteSeleccionado.celular}"
+                                           >
+                            </h:inputText>
+                        </h:panelGrid>
+                        
+                        <!--País (*)-->
+                        <h:panelGrid  width="100px" columns="1" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                            <h:outputLabel for="txtPais" value="Pais"/>
+                            <h:inputText id="txtPais"
+                                               size="20"
+                                               maxlength="20"
+                                               label="Pais de residencia"
+                                               value="#{clienteBean.clienteSeleccionado.pais}"
+                                               required="true"
+                                               style="width: 270px"
+                                               >
+                                    <f:validateLength minimum="1"/>
+                            </h:inputText>
+                            <h:message id="paisMensaje" for="txtPais" />
+                        </h:panelGrid>
+                        
+                        <!--Departamento (*)-->
+                        <h:panelGrid width="100px" columns="1" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                            <h:outputLabel for="txtDepto" value="Departamento"/>
+                            <h:inputText id="txtDepto"
+                                               size="20"
+                                               maxlength="20"
+                                               label="Departamento de residencia"
+                                               value="#{clienteBean.clienteSeleccionado.departamento}"
+                                               required="true"
+                                               style="width: 270px"
+                                               >
+                                    <f:validateLength minimum="1"/>
+                            </h:inputText>
+                            <h:message id="deptoMensaje" for="txtDepto" />
+                        </h:panelGrid>
+                        
+                        <!--Ciudad de residencia (*)-->
+                        <h:panelGrid width="100px" columns="1" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                            <h:outputLabel for="txtCiudad" value="Ciudad"/>
+                            <h:inputText id="txtCiudad"
+                                               size="20"
+                                               maxlength="20"
+                                               label="Ciudad de residencia"
+                                               value="#{clienteBean.clienteSeleccionado.ciudad}"
+                                               style="width: 270px"
+                                               required="true"
+                                               >
+                                    <f:validateLength minimum="1"/>
+                            </h:inputText>
+                            <h:message id="ciudadMensaje" for="txtCiudad" />
+                        </h:panelGrid>
+                        
+                        <!--Dirección (*)-->
+                        <h:panelGrid width="100px" columns="1" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                            <h:outputLabel for="txtDireccion" value="Dirección de residencia"/>
+                            <h:inputText id="txtDireccion"
+                                           size="50"
+                                           maxlength="50"
+                                           label="Dirección de residencia"
+                                           value="#{clienteBean.clienteSeleccionado.direccion}"
+                                           style="width: 270px"
+                                           required="true"
+                                           >
+                                <f:validateLength minimum="1"/>
+                            </h:inputText>
+                            <h:message id="dirMensaje" for="txtDireccion" />
+                        </h:panelGrid>
+                        
+                        <!--Profesión-->
+                        <h:panelGrid width="100px" columns="1" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                            <h:outputLabel for="txtProfesion" value="Profesión"/>
+                            <h:inputText id="txtProfesion"
+                                           size="20"
+                                           maxlength="20"
+                                           label="Profesion"
+                                           value="#{clienteBean.clienteSeleccionado.profesion}"
+                                           style="width: 270px"
+                                           >
+                            </h:inputText>
+                        </h:panelGrid>
+                        
+                        <h:commandButton value="Actualizar" action="#{clienteBean.guardar}" ></h:commandButton>
+                    </h:panelGroup>
+                </h:form>
+                    
+                <h:form>
+                    <h:commandButton value="Volver" action="#{clienteBean.volverListado}" ></h:commandButton>
+                </h:form>
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
