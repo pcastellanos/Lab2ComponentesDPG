@@ -145,7 +145,7 @@
                                     
                                 </f:facet>
                                 
-                                <h:commandButton value="Eliminar" action="#{clienteBean.eliminarCliente(file.numeroDocumento)}"></h:commandButton>
+                                <h:commandButton value="Eliminar" action="#{clienteBean.eliminarCliente(file.numeroDocumento)}" onclick="if (!confirm('Esta seguro que quiere eliminar el cliente?')) return false"></h:commandButton>
                             </ice:column>
                         </ice:dataTable>
                     </ice:panelGroup>
