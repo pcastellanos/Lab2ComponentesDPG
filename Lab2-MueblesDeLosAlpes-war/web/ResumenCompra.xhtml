@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+    <body>
+
+        <ui:composition template="./main-template.xhtml">
+
+            <ui:define name="body">
+                <h:form>
+                    <h:commandLink value="Volver" action="listadoMueblesVenta"></h:commandLink>
+                </h:form>
+                
+                <h:form>
+                    <h:outputText value="Costo total de la compra:  #{carroCompraBean.costoTotal}"></h:outputText>
+                    <ice:panelGroup>
+                        <!-- Se crea una tabla donde se presentan los muebles a la venta del sistema -->
+                        <ice:dataTable
+                            id="data"
+                            value="#{carroCompraBean.mueblesComprar}"
+                            var="file"
+                            scrollable="false"
+                            columnWidths="100px,100px,100px,100px"
+                            scrollHeight="100px"
+                            cellpadding="0"
+                            resizable="true"
+                            rows="5">
+                            <ice:column>
+                                <f:facet name="header">
+                                    Referencia
+                                </f:facet>
+                                <ice:outputText value="#{file.mueble.referencia}"/>
+                            </ice:column>
+                            
+                            <ice:column>
+                                <f:facet name="header">
+                                    Nombre
+                                </f:facet>
+                                <ice:outputText value="#{file.mueble.nombre}"/>
+                            </ice:column>
+                            
+                            <ice:column>
+                                <f:facet name="header">
+                                    Precio
+                                </f:facet>
+                                <ice:outputText value="#{file.mueble.precio}"/>
+                            </ice:column>
+                            
+                            <ice:column>
+                                <f:facet name="header">
+                                    Cantidad
+                                </f:facet>
+                                <ice:outputText value="#{file.cantidad}"/>
+                            </ice:column>
+                            
+                            <ice:column>
+                                <f:facet name="header">
+                                    Valor
+                                </f:facet>
+                                <ice:outputText value="#{file.cantidad*file.mueble.precio}"/>
+                            </ice:column>
+                           </ice:dataTable>
+                    </ice:panelGroup>
+                    
+                    <!-- Se crea y establecen propiedades del paginador -->
+                    <ice:dataPaginator id="dataScroll_1"
+                                       for="data"
+                                       vertical="false"
+                                       fastStep="3"
+                                       paginator="true"
+                                       paginatorMaxPages="10">
+                        <f:facet name="first">
+                            <ice:graphicImage id="firstpage_1"
+                                              url="./resources/img/graphics/arrow-first.gif"
+                                              style="border:none;"
+                                              title="Ir a la primera pÃ¡gina"/>
+                        </f:facet>
+                        <f:facet name="last">
+                            <ice:graphicImage id="lastpage_1"
+                                              url="./resources/img/graphics/arrow-last.gif"
+                                              style="border:none;"
+                                              title="Ir a la Ãºltima pÃ¡gina"/>
+                        </f:facet>
+                        <f:facet name="previous">
+                            <ice:graphicImage id="previouspage_1"
+                                              url="./resources/img/graphics/arrow-previous.gif"
+                                              style="border:none;"
+                                              title="AtrÃ¡s"/>
+                        </f:facet>
+                        <f:facet name="next">
+                            <ice:graphicImage id="nextpage_1"
+                                              url="./resources/img/graphics/arrow-next.gif"
+                                              style="border:none;"
+                                              title="Siguiente"/>
+                        </f:facet>
+                        <f:facet name="fastforward">
+                            <ice:graphicImage id="fastforward_1"
+                                              url="./resources/img/graphics/arrow-ff.gif"
+                                              style="border:none;"/>
+                        </f:facet>
+                        <f:facet name="fastrewind">
+                            <ice:graphicImage id="fastrewind_1"
+                                              url="./resources/img/graphics/arrow-fr.gif"
+                                              style="border:none;"/>
+                        </f:facet>
+                    </ice:dataPaginator>
+                </h:form>
+                
+                <h:commandButton value="Comprar" action="">
+                    
+                </h:commandButton>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

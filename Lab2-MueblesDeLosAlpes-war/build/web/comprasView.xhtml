@@ -12,7 +12,9 @@
 
             <ui:define name="body">
                    
-                <h:form> 
+                   
+                <h:form>
+                    <h:commandButton value="Finalizar compra" action="finalizarCompra"></h:commandButton>
                     <ice:panelGroup>
                         <!-- Se crea una tabla donde se presentan los muebles a la venta del sistema -->
                         <ice:dataTable
@@ -57,14 +59,21 @@
                                 <f:facet name="header">
                                     Comprar
                                 </f:facet>
-                                <h:commandButton value="Comprar" action="#{carroCompraBean.actualizarCantidadMuebleCarro(file.mueble.referencia, file.cantidad)}" ></h:commandButton>
+                                <h:commandButton value="Adicionar al carrito" action="#{carroCompraBean.actualizarCantidadMuebleCarro(file.mueble.referencia, file.cantidad)}" ></h:commandButton>
                             </ice:column>
                             
                             <ice:column>
                                 <f:facet name="header">
-                                    Eliminar de la compra
+                                   
                                 </f:facet>
-                                <h:commandButton value="Eliminar" action="#{carroCompraBean.actualizarCantidadMuebleCarro(file.mueble.referencia, 0)}" onclick="if (!confirm('Esta seguro que quiere eliminar el mueble de la compra ?')) return false"></h:commandButton>
+                                <h:commandButton value="Eliminar del carrito" action="#{carroCompraBean.actualizarCantidadMuebleCarro(file.mueble.referencia, 0)}" onclick="if (!confirm('Esta seguro que quiere eliminar el mueble de la compra ?')) return false"></h:commandButton>
+                            </ice:column>
+                            
+                            <ice:column>
+                                <f:facet name="header">
+                                    
+                                </f:facet>
+                                <h:commandButton value="Ver detalle" action="#{carroCompraBean.verDetalle(file.mueble.referencia)}" ></h:commandButton>
                             </ice:column>
                         </ice:dataTable>
                     </ice:panelGroup>

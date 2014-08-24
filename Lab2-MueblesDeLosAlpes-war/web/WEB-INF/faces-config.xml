@@ -67,6 +67,7 @@
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
+
         <from-view-id>/reporte.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>regresarMenu</from-outcome>
@@ -74,10 +75,35 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
+        <from-view-id>/detalleMuebleView.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listadoMueblesVenta</from-outcome>
+            <to-view-id>/comprasView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/comprasView.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>finalizarCompra</from-outcome>
+            <to-view-id>/ResumenCompra.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/ResumenCompra.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listadoMueblesVenta</from-outcome>
+            <to-view-id>/comprasView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
     <managed-bean>
         <managed-bean-name>reporteComprasBean</managed-bean-name>
         <managed-bean-class>com.losalpes.beans.ReporteComprasBean</managed-bean-class>
         <managed-bean-scope>application</managed-bean-scope>
     </managed-bean>
-    
+        
 </faces-config>
