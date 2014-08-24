@@ -18,6 +18,7 @@ import com.losalpes.servicios.IServicioCatalogo;
 import com.losalpes.servicios.ServicioCatalogoMock;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
 
@@ -26,6 +27,7 @@ import javax.faces.model.SelectItem;
  * @author Juan Sebastián Urrego
  */
 @ManagedBean
+@SessionScoped
 public class CatalogoBean
 {
 
@@ -43,6 +45,7 @@ public class CatalogoBean
      */
     private IServicioCatalogo catalogo;
 
+    
     //-----------------------------------------------------------
     // Constructor
     //-----------------------------------------------------------
@@ -84,7 +87,6 @@ public class CatalogoBean
      */
     public List<Mueble> getMuebles()
     {
-
         return catalogo.darMuebles();
     }
 
@@ -124,5 +126,6 @@ public class CatalogoBean
         }
         return sitems;
     }
+    
 
 }

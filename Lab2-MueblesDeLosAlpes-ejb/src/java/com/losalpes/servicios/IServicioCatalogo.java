@@ -34,5 +34,10 @@ public interface IServicioCatalogo
      * @return muebles Lista de muebles
      */
     public List<Mueble> darMuebles();
+
+    public Mueble buscarMueble(String referencia);
+
+    public void editarPrecio(List<Mueble> mueblesEditar);
+
     
 }

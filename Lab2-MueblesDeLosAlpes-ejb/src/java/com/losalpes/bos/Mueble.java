@@ -48,6 +48,17 @@ public class Mueble
      */
     private boolean seleccion;
 
+    /**
+     * Indica la cantidad existente del mueble
+     */
+    private int cantidad;
+    
+    /**
+     * Indica el precio por unidad de mueble
+     */
+    private int precio;
+    
+    
     //-----------------------------------------------------------
     // Constructores
     //-----------------------------------------------------------
@@ -66,13 +77,18 @@ public class Mueble
      * @param nombre Nombre del mueble
      * @param descripcion Descripión del mueble
      * @param tipo Tipo de mueble
+     * @param precio precio del mueble
+     * @param cantidad cantidad existente del mueble 
      */
-    public Mueble(String referencia, String nombre, String descripcion, TipoMueble tipo)
+    public Mueble(String referencia, String nombre, String descripcion, TipoMueble tipo, int precio, int cantidad)
     {
         this.referencia = referencia;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.tipo = tipo;
+        this.precio = precio;
+        this.cantidad = cantidad;
+        this.seleccion = false;
     }
 
     //-----------------------------------------------------------
@@ -154,7 +170,7 @@ public class Mueble
      * Devuelve el estado de selección del mueble
      * @return seleccion Verdadero o falso
      */
-    public boolean isSeleccion()
+    public boolean getSeleccion()
     {
         return seleccion;
     }
@@ -168,5 +184,38 @@ public class Mueble
         this.seleccion = seleccion;
     }
 
+    /**
+     * Obtiene la cantidad existente del mueble
+     * @return 
+     */
+    public int getCantidad() {
+        return cantidad;
+    }
 
+    /**
+     * actualiza la cantidad existente del mueble
+     * @param cantidad 
+     */
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    /**
+     * Obtiene el precio del mueble
+     * @return 
+     */
+    public int getPrecio() {
+        return precio;
+    }
+
+    /**
+     * actualiza el precio del mueble
+     * @param precio 
+     */
+    public void setPrecio(int precio) {
+        this.precio = precio;
+    }
+
+
+     
 }

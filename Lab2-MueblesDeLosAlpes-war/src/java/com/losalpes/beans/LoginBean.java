@@ -86,7 +86,7 @@ public class LoginBean
             }
             else
             {
-                return "";
+                return "comprasView.xhtml";
             }
         }
         catch (AutenticacionException ex)
