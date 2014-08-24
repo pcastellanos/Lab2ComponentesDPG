@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="./main-template.xhtml">
+
+            <ui:define name="body">
+                
+                
+                <h:outputText  value="Detalle del Mueble" />
+                <h:form>
+                    <table>
+                    <tr class="iceDatTblRow2">
+                        <td>Nombre: </td>
+                        <td><h:outputText  value="#{carroCompraBean.muebleVenta.mueble.nombre}" /></td>
+                    </tr>
+                    <tr class="iceDatTblRow1">
+                        <td>Referencia: </td>
+                        <td><h:outputText value="#{carroCompraBean.muebleVenta.mueble.referencia}" /></td>
+                    </tr>
+                    <tr class="iceDatTblRow2">
+                        <td>Descripción: </td>
+                        <td><h:outputText  value="#{carroCompraBean.muebleVenta.mueble.descripcion}" /></td>
+                    </tr>
+                    <tr class="iceDatTblRow1">
+                        <td>Precio: </td>
+                        <td><h:outputText value="#{carroCompraBean.muebleVenta.mueble.precio}" /></td>
+                    </tr>
+
+                    <tr class="iceDatTblRow2">
+                        <td>Cantidad a comprar: </td>
+                        <td><h:inputText size="10" value="#{carroCompraBean.cantidadDetalle}"  /></td>
+                    </tr>
+                    </table>
+                
+                
+                    <h:commandButton value="Adicionar" action="#{carroCompraBean.act(carroCompraBean.muebleVenta.mueble.referencia)}" ></h:commandButton>
+                    <h:commandLink value="Volver" action="listadoMueblesVenta"></h:commandLink>
+                    
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
