@@ -80,14 +80,16 @@ public class LoginBean
         try
         {
             Usuario user = servicio.login(usuario, contraseña);
-            if (user.getTipo() == TipoUsuario.ADMINISTRADOR)
-            {
-                return "administratorView.xhtml";
+            String page="";
+            switch(user.getTipo()){
+                case ADMINISTRADOR:
+                   page ="valido";
+                    break;
+                case CLIENTE:
+                    page ="clientePermitido";
+                    break;
             }
-            else
-            {
-                return "comprasView.xhtml";
-            }
+            return page;
         }
         catch (AutenticacionException ex)
         {

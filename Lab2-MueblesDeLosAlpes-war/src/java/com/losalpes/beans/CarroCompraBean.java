@@ -23,6 +23,7 @@ public class CarroCompraBean {
 
     List<MuebleVenta> mueblesVenta;
     IServicioCatalogo catalogo;
+    int idDetalle;
     /**
      * Creates a new instance of CarroCompraBean
      */
@@ -54,6 +55,11 @@ public class CarroCompraBean {
         mueblesVenta.get(posicion).setCantidad(cantidad);
     }
     
+    public String verDetalle(String referencia){
+        idDetalle = getPosMueble(referencia, mueblesVenta);
+
+        return  "paafajds";
+    }
     /**
      * Busca la posición de un mueble en un listado
      * @param referencia

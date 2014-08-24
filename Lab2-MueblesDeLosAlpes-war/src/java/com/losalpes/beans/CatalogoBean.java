@@ -127,5 +127,12 @@ public class CatalogoBean
         return sitems;
     }
     
+    /**
+     * Vuelve a la vista principal del administrador
+     * @return 
+     */
+    public String volverAdmin(){
+        return  "regresarMenu";
+    }
 
 }

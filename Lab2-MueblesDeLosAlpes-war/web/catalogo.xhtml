@@ -68,18 +68,15 @@
                 </h:panelGrid>
 
                 <h:commandButton value="Agregar" action="#{catalogoBean.agregarMueble}" />
+
                 <h:commandButton value="Nuevo" action="#{catalogoBean.limpiar}" />
+
             </h:panelGroup>
         </h:form>
-        <h:form>
-            <h:commandButton value="Volver" action="administratorView" />
-        </h:form>
-        
-        
         <!--listado de muebles-->
         <h:form>
+            <h:commandButton value="Volver" action="#{catalogoBean.volverAdmin}" />
             <ice:panelGroup>
-
                 <!-- Se crea una tabla donde se presentan los muebles del sistema -->
                 <ice:dataTable
                     id="data"

@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.1"
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>valido</from-outcome>
+            <to-view-id>/administratorView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>clientePermitido</from-outcome>
+            <to-view-id>/comprasView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/administratorView.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>irCatalogo</from-action>
+            <to-view-id>/catalogo.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-action>irClientes</from-action>
+            <to-view-id>/clientesView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/catalogo.xhtml</from-view-id>
+        <navigation-case>
+             <from-outcome>regresarMenu</from-outcome>
+            <to-view-id>/administratorView.xhtml</to-view-id>
+             <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/clientesView.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresarMenu</from-outcome>
+            <to-view-id>/administratorView.xhtml</to-view-id>
+             <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>irModificarCliente</from-outcome>
+            <to-view-id>/ModificarClienteView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/ModificarClienteView.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>irListadoClientes</from-outcome>
+            <to-view-id>/clientesView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>
