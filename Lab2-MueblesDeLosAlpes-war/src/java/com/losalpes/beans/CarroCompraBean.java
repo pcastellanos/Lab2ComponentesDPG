@@ -78,4 +78,11 @@ public class CarroCompraBean {
         return posicion;
     }
     
+    public String cerrarCompra(){
+        if(this.getMuebles().size()>0){
+          
+        }
+    return "";
+    }
+    
 }

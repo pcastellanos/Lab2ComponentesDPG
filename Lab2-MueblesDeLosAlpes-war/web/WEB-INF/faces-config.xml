@@ -31,6 +31,11 @@
             <to-view-id>/clientesView.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>irReportes</from-outcome>
+            <to-view-id>/reporte.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/catalogo.xhtml</from-view-id>
@@ -61,4 +66,18 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/reporte.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresarMenu</from-outcome>
+            <to-view-id>/administratorView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>reporteComprasBean</managed-bean-name>
+        <managed-bean-class>com.losalpes.beans.ReporteComprasBean</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
+    
 </faces-config>
