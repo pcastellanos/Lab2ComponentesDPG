@@ -143,7 +143,7 @@ public class ClienteBean {
         else
             clienteSeleccionado = clientesMock.obtenerPorDocumento(numeroDoc);
         
-        return "ModificarClienteView";
+        return "irModificarCliente";
     }
     
     /**
@@ -152,7 +152,7 @@ public class ClienteBean {
      */
     public String volverAdmin(){
         filtroBusqueda ="";
-        return  "administratorView";
+        return  "regresarMenu";
     }
     
     /**
@@ -161,7 +161,7 @@ public class ClienteBean {
      */
     public String volverListado(){
         filtroBusqueda ="";
-        return  "clientesView";
+        return  "irListadoClientes";
     }
     
     /**

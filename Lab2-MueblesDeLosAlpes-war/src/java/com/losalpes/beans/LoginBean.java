@@ -82,7 +82,7 @@ public class LoginBean
             Usuario user = servicio.login(usuario, contraseña);
             if (user.getTipo() == TipoUsuario.ADMINISTRADOR)
             {
-                return "administratorView.xhtml";
+                return "valido";
             }
             else
             {
