@@ -109,10 +109,11 @@
                         </f:facet>
                     </ice:dataPaginator>
                 </h:form>
-                
-                <h:commandButton value="Comprar" action="">
+                <h:form>
+                    <h:commandButton value="Comprar" action="#{carroCompraBean.cerrarCompra}">
                     
                 </h:commandButton>
+                </h:form>
             </ui:define>
 
         </ui:composition>

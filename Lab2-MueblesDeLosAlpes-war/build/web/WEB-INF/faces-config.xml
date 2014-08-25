@@ -74,7 +74,12 @@
             <to-view-id>/administratorView.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>verReporte</from-outcome>
+            <to-view-id>/reporte.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
+    <navigation-rule>
         <from-view-id>/detalleMuebleView.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>listadoMueblesVenta</from-outcome>
@@ -99,6 +104,8 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
+    
+    
 
     <managed-bean>
         <managed-bean-name>reporteComprasBean</managed-bean-name>

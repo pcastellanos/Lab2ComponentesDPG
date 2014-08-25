@@ -19,13 +19,15 @@ import com.losalpes.servicios.IServicioSeguridad;
 import com.losalpes.servicios.ServicioSeguridadMock;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 /**
  * Managed bean encargado de la autenticación en el sistema
  * @author Juan Sebastián Urrego
  */
-@ManagedBean
+@ManagedBean(name="loginBean")
+@SessionScoped
 public class LoginBean
 {
 

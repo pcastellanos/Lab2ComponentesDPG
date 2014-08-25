@@ -15,6 +15,18 @@
                     <h:commandLink value="Volver" action="#{reporteComprasBean.volverAdmin}" ></h:commandLink>
                 </h:form>
                 
+                <h:form>
+                    <!--palabra para la busqueda-->
+                    <h:outputLabel for="txtBusqueda" value="Agregue la fecha a consultar (dd/MM/yyyy)"/>
+                    <h:inputText id="txtBusqueda"
+                                   maxlength="20"
+                                   size="20"
+                                   value="#{reporteComprasBean.filtro}"
+                                   label="Buscar"/>
+                    <h:commandButton value="Filtrar Listado" action="#{reporteComprasBean.filtrarVentas}" />
+
+                </h:form>
+                
                 
                  
                 <h:form> 
@@ -66,22 +78,7 @@
                                 <ice:outputText value="#{venta.total}"/>
                             </ice:column>
                             
-                            
-                            <ice:column>
-                                <f:facet name="header">
-                                    
-                                </f:facet>
-                                <h:commandButton value="Editar" action="#{clienteBean.seleccionarCliente(file.numeroDocumento)}"></h:commandButton>
-                                
-                            </ice:column>
-                            
-                            <ice:column>
-                                <f:facet name="header">
-                                    
-                                </f:facet>
-                                
-                                <h:commandButton value="Eliminar" action="#{clienteBean.eliminarCliente(file.numeroDocumento)}" onclick="if (!confirm('Esta seguro que quiere eliminar el cliente?')) return false"></h:commandButton>
-                            </ice:column>
+                          
                         </ice:dataTable>
                     </ice:panelGroup>
                     

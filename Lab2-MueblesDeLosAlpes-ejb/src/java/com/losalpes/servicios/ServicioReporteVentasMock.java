@@ -7,6 +7,7 @@ package com.losalpes.servicios;
 import com.losalpes.bos.Cliente;
 import com.losalpes.bos.MuebleVenta;
 import com.losalpes.bos.Ventas;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -45,9 +46,56 @@ public class ServicioReporteVentasMock {
         
         return total;    
     }
+    /**
+     * Recibe parametro para filtrar por fecha
+     * @param filtro
+     * @return 
+     */
+    public List<Ventas> obtenerVentas(String filtro){
+    List<Ventas> listaVentasTmp = filtro.equals("") ? this.listadoVentas : filtrarPorFecha(filtro);
+    return listaVentasTmp;
+    }
     
-    public List<Ventas> obtenerVentas(){
-    return this.listadoVentas;
+    /**
+     * Metodo para agregar una nueva venta que realizo un cliente
+     * @param venta
+     * @return boolean
+     */
+    public Boolean agregarVenta(Ventas venta){
+    this.listadoVentas.add(venta);
+    return true;
+    }
+    
+    /**
+     * Metodo encargado de validar la fecha ingresada para validar Reporte
+     * @param filtro
+     * @return 
+     */
+    public List<Ventas> filtrarPorFecha(String filtro){
+         List<Ventas> listaVentasTmp = new ArrayList<Ventas>();
+        SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
+      for(int i=0;i<this.listadoVentas.size();i++){
+           String fecha = sdf.format(this.listadoVentas.get(i).getFechaDeCompra());
+           System.out.println(i+" - "+fecha);
+           if(fecha.equals(filtro)){
+              listaVentasTmp.add(this.listadoVentas.get(i));
+           }
+        }
+      return listaVentasTmp;
+    }
+    
+    public String obtenerProductoConMayorVentas(){
+        List<String[]> listaProductos = new ArrayList<String[]>();
+        for(int i=0;i<this.listadoVentas.size();i++){
+            Ventas ventatmp = this.listadoVentas.get(i);
+            for(int j=0; i<ventatmp.getMueblesVenta().size();i++){
+                MuebleVenta muebleTmp =ventatmp.getMueblesVenta().get(j);
+                muebleTmp.getMueble().getNombre();
+            }
+        }
+        
+        
+    return "";
     }
     
     

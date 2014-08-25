@@ -18,7 +18,7 @@ import javax.faces.model.SelectItem;
  *
  * @author paulacastellanos
  */
-@ManagedBean
+@ManagedBean(name="clienteBean")
 @SessionScoped
 public class ClienteBean {
 

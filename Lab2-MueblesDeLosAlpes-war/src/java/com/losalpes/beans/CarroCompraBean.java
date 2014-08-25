@@ -4,16 +4,24 @@
  */
 package com.losalpes.beans;
 
+import com.losalpes.bos.Cliente;
 import com.losalpes.bos.MuebleVenta;
 import com.losalpes.bos.Mueble;
 import com.losalpes.bos.TipoMueble;
+import com.losalpes.bos.Ventas;
 import com.losalpes.servicios.IServicioCatalogo;
 import com.losalpes.servicios.ServicioCatalogoMock;
+import java.util.Date;
+import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -27,6 +35,38 @@ public class CarroCompraBean {
     IServicioCatalogo catalogo;
     int idDetalle;
     private int cantidadDetalle;
+    
+    @ManagedProperty(value="#{reporteComprasBean}")
+    private ReporteComprasBean reporteComprasBean;
+    
+    @ManagedProperty(value="#{loginBean}")
+    private LoginBean loginBean;
+
+    public LoginBean getLoginBean()
+    {
+    return loginBean;
+    }
+
+    public void setLoginBean(LoginBean loginBean)
+    {
+    this.loginBean = loginBean;
+    }
+
+    @PostConstruct
+    public void init() {
+        System.out.println("ejecuta post construcción "+reporteComprasBean);
+    }
+    
+    
+
+    public void setReporteComprasBean(ReporteComprasBean reporteComprasBean) {
+        this.reporteComprasBean = reporteComprasBean;
+    }
+    
+    public ReporteComprasBean getReporteComprasBean() {
+       return this.reporteComprasBean;
+    }
+    
     /**
      * Creates a new instance of CarroCompraBean
      */
@@ -162,10 +202,18 @@ public class CarroCompraBean {
     }
     
     public String cerrarCompra(){
-        if(this.getMuebles().size()>0){
-          
+           System.out.println(" salida de cierre compra");
+        Ventas ventatmp =new Ventas();
+        ventatmp.setFechaDeCompra(new Date());
+        ventatmp.setMueblesVenta(this.getMuebles());
+        ventatmp.setTotal(Double.parseDouble((String.valueOf(this.getCostoTotal()))));
+        Cliente c = new Cliente();
+        c.setNombre(this.getLoginBean().getUsuario());
+        c.setNumeroDocumento("--");
+        ventatmp.setCliente(c);
+        this.getReporteComprasBean().agregarVenta(ventatmp);
+        return "listadoMueblesVenta";
         }
-          return "";
-        }
+              
     
 }
