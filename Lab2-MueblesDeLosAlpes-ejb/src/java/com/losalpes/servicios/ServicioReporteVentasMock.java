@@ -90,12 +90,44 @@ public class ServicioReporteVentasMock {
             Ventas ventatmp = this.listadoVentas.get(i);
             for(int j=0; i<ventatmp.getMueblesVenta().size();i++){
                 MuebleVenta muebleTmp =ventatmp.getMueblesVenta().get(j);
-                muebleTmp.getMueble().getNombre();
+                if(listaProductos.size()>0){
+                  boolean nuevoProducto = true;
+                  for(int z=0;z<listaProductos.size();z++){
+                     if(listaProductos.get(z)[2].equals(muebleTmp.getMueble().getReferencia())){
+                         nuevoProducto = false;
+                         listaProductos.get(z)[1]=String.valueOf(Integer.parseInt(listaProductos.get(z)[1])
+                                                                 +muebleTmp.getMueble().getCantidad());
+                     }
+                  }
+                  if(nuevoProducto){
+                    String[] obj = new String[3];
+                    obj[0] = muebleTmp.getMueble().getNombre();
+                    obj[1] = String.valueOf(muebleTmp.getMueble().getCantidad());
+                    obj[2] = muebleTmp.getMueble().getReferencia();
+                    listaProductos.add(obj);
+                  }
+                }else{
+                    String[] obj = new String[3];
+                    obj[0] = muebleTmp.getMueble().getNombre();
+                    obj[1] = String.valueOf(muebleTmp.getMueble().getCantidad());
+                    obj[2] = muebleTmp.getMueble().getReferencia();
+                    listaProductos.add(obj);
+                }
             }
         }
-        
-        
-    return "";
+        String producto ="--";
+        int cantidadMayor = 0;
+        for(int i=0;i<listaProductos.size();i++){
+           if(Integer.parseInt(listaProductos.get(i)[1])>cantidadMayor){
+              System.out.println(listaProductos.get(i)[2] +" - "+listaProductos.get(i)[0]+" Total:"+listaProductos.get(i)[1]);
+              producto=listaProductos.get(i)[2] +" - "+listaProductos.get(i)[0]+" Total:"+listaProductos.get(i)[1];
+           }
+        } 
+    return producto;
+    }
+    
+    public void agregarRegistroDeProducto(String obj){
+    
     }
     
     

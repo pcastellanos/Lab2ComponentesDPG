@@ -23,21 +23,23 @@ public class ReporteComprasBean {
      ServicioReporteVentasMock sreporte;
      List<Ventas> listaVentas;
      String filtro;
+     String productoMasVendido;
     /**
      * Creates a new instance of ReporteComprasBean
      */
     public ReporteComprasBean() {
-       
-        System.out.println("ReportebeanConstruido constructed");
-        this.setFiltro("");
+       this.setFiltro("");
+       sreporte = new ServicioReporteVentasMock();
         if(this.listaVentas==null){
           this.listaVentas = new ArrayList<Ventas>();
-          sreporte = new ServicioReporteVentasMock();
           this.setListaVentas(sreporte.obtenerVentas(""));
-          System.out.print("inicia con "+this.getListaVentas().size());
         }
         
         
+    }
+    
+    public String getProductoMasVendido(){
+        return sreporte.obtenerProductoConMayorVentas();
     }
     
     public String volverAdmin(){
@@ -45,7 +47,7 @@ public class ReporteComprasBean {
     }
     
     public boolean agregarVenta(Ventas venta){
-     return sreporte.agregarVenta(venta);;
+     return sreporte.agregarVenta(venta);
     }
     
     public String filtrarVentas(){
