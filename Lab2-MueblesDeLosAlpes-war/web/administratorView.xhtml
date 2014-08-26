@@ -10,9 +10,20 @@
 
             <ui:define name="body">
                 <h:form>
-                    <h:commandButton value="Administración del catálogo" action="irCatalogo"></h:commandButton>
-                    <h:commandButton value="Administración del clientes" action="irClientes"></h:commandButton>
-                    <h:commandButton value="Reportes" action="irReportes"></h:commandButton>
+                    <table>
+                        <tr>
+                            <td><h:commandButton value="Administración del catálogo" action="irCatalogo"></h:commandButton></td>
+                        </tr>
+                        <tr>
+                            <td><h:commandButton value="Administración del clientes" action="irClientes"></h:commandButton></td>
+                        </tr>
+                        <tr>
+                            <td><h:commandButton value="Reporte de Muebles" action="irReportes"></h:commandButton></td>
+                        </tr>
+                        <tr>
+                            <td><h:commandButton value="Reporte de compras de cliente" action="irReportesCliente"></h:commandButton></td>
+                        </tr>
+                    </table>
                 </h:form>
             </ui:define>
 

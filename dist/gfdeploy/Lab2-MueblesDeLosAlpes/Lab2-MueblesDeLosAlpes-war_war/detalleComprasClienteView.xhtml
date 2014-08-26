@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+    <body>
+
+        <ui:composition template="./main-template.xhtml">
+            <ui:define name="body">
+                <h:form>
+                    <h:commandLink value="Volver" action="listadoClientesReporte" rendered="#{reporteComprasBean.paginaOrigen eq reporteComprasBean.origenReporteCliente}"></h:commandLink>
+                    <h:commandLink value="Volver" action="listadoVentasReporte" rendered="#{reporteComprasBean.paginaOrigen eq reporteComprasBean.origenReporte}"></h:commandLink>
+                </h:form>
+                <table>
+                    <tr class="iceDatTblRow2">
+                        <td>Nombre: </td>
+                        <td><h:outputText  value="#{reporteComprasBean.nombreClienteDetalle}" /></td>
+                    </tr>
+                    <tr class="iceDatTblRow1">
+                        <td>Valor total de compras </td>
+                        <td><h:outputText value="#{reporteComprasBean.totalVentasDetalle}" /></td>
+                    </tr>
+                </table>
+                
+                <ice:panelGroup>
+                        <!-- Se crea una tabla donde se presentan los muebles a la venta del sistema -->
+                        <ice:dataTable
+                            id="data"
+                            value="#{reporteComprasBean.resumenCompras}"
+                            var="file"
+                            scrollable="false"
+                            columnWidths="100px,100px,100px,100px"
+                            scrollHeight="100px"
+                            cellpadding="0"
+                            resizable="true"
+                            rows="5">
+                            
+                            
+                            <ice:column>
+                                <f:facet name="header">
+                                    Fecha compra
+                                </f:facet>
+                                <ice:outputText value="#{file.fechaDeCompra}"/>
+                            </ice:column>
+                            
+                            <ice:column>
+                                <f:facet name="header">
+                                    Mueble
+                                </f:facet>
+                                
+                                <ice:dataTable
+                                    id="data"
+                                    value="#{file.mueblesVenta}"
+                                    var="muebleVenta"
+                                    scrollable="false"
+                                    columnWidths="100px,100px,100px,100px"
+                                    scrollHeight="100px"
+                                    cellpadding="0"
+                                    resizable="true"
+                                    rows="5">
+                                    
+                                    <ice:column>
+                                        <ice:outputText value="#{muebleVenta.mueble.nombre}"/>
+                                    </ice:column>
+                                    <ice:column>
+                                        <ice:outputText value="#{muebleVenta.mueble.precio}"/>
+                                    </ice:column>
+                                    <ice:column>
+                                        <ice:outputText value="#{muebleVenta.cantidad}"/>
+                                    </ice:column>
+                                </ice:dataTable>
+                                
+                                
+                                
+                                
+                            </ice:column>
+                            
+                        </ice:dataTable>
+                </ice:panelGroup>
+            </ui:define>
+
+        </ui:composition>
+        
+        
+
+    </body>
+</html>

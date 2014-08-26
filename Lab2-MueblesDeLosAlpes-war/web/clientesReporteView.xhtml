@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+    <body>
+
+        <ui:composition template="./main-template.xhtml">
+
+            <ui:define name="body">
+                <h:form>
+                    <h:commandLink action="regresarMenu" value="Regresar Menú Principal"></h:commandLink>
+                </h:form>
+                <h:form>
+                    <!--Tipo de busqueda-->
+                    <h:outputLabel for="slctBusqueda" value="Seleccionar criterio:"/>
+                    <h:selectOneMenu id="slctBusqueda" value="#{clienteBean.tipoBusqueda}">
+                        <f:selectItems value="#{clienteBean.tiposBusqueda}" />
+                    </h:selectOneMenu>
+
+                    <!--palabra para la busqueda-->
+                    <h:outputLabel for="txtBusqueda" value="Ingrese la palabra que quiere buscar"/>
+                    <h:inputText id="txtBusqueda"
+                                   maxlength="20"
+                                   size="20"
+                                   value="#{clienteBean.filtroBusqueda}"
+                                   label="Buscar"/>
+                    <h:commandButton value="Buscar Cliente" action="#{clienteBean.buscarReporteCliente}" />
+                </h:form>
+                 
+                <h:form> 
+                    <ice:panelGroup>
+                        <!-- Se crea una tabla donde se presentan los clientes del sistema -->
+                        <ice:dataTable
+                            id="data"
+                            value="#{clienteBean.clientes}"
+                            var="file"
+                            scrollable="false"
+                            columnWidths="100px,100px,100px,100px"
+                            scrollHeight="100px"
+                            cellpadding="0"
+                            resizable="true"
+                            rows="5">
+                            
+                            
+                            
+                            <ice:column>
+                                <f:facet name="header">
+                                    Nombre
+                                </f:facet>
+                                <ice:outputText value="#{file.nombre}"/>
+                            </ice:column>
+                            
+                            <ice:column>
+                                <f:facet name="header">
+                                    Tipo de documento
+                                </f:facet>
+                                <ice:outputText value="#{file.tipoDocumento}"/>
+                            </ice:column>
+                            
+                            <ice:column>
+                                <f:facet name="header">
+                                    Número de documento
+                                </f:facet>
+                                <ice:outputText value="#{file.numeroDocumento}"/>
+                            </ice:column>
+                            
+                            <ice:column>
+                                <f:facet name="header">
+                                    Correo electronico
+                                </f:facet>
+                                <ice:outputText value="#{file.correo}"/>
+                            </ice:column>
+                            
+                            <ice:column>
+                                <f:facet name="header">
+                                    dirección de residencia
+                                </f:facet>
+                                <ice:outputText value="#{file.direccion}"/>
+                            </ice:column>
+                           
+                            <ice:column>
+                                <f:facet name="header">
+                                    
+                                </f:facet>
+                                <h:commandButton value="Ver detalle venta" action="#{reporteComprasBean.verDetalleVenta(file.numeroDocumento, reporteComprasBean.origenReporteCliente)}"></h:commandButton>
+                                
+                            </ice:column>
+                            
+                        </ice:dataTable>
+                    </ice:panelGroup>
+                    
+                    <!-- Se crea y establecen propiedades del paginador -->
+                    <ice:dataPaginator id="dataScroll_1"
+                                       for="data"
+                                       vertical="false"
+                                       fastStep="3"
+                                       paginator="true"
+                                       paginatorMaxPages="10">
+                        <f:facet name="first">
+                            <ice:graphicImage id="firstpage_1"
+                                              url="./resources/img/graphics/arrow-first.gif"
+                                              style="border:none;"
+                                              title="Ir a la primera pÃ¡gina"/>
+                        </f:facet>
+                        <f:facet name="last">
+                            <ice:graphicImage id="lastpage_1"
+                                              url="./resources/img/graphics/arrow-last.gif"
+                                              style="border:none;"
+                                              title="Ir a la Ãºltima pÃ¡gina"/>
+                        </f:facet>
+                        <f:facet name="previous">
+                            <ice:graphicImage id="previouspage_1"
+                                              url="./resources/img/graphics/arrow-previous.gif"
+                                              style="border:none;"
+                                              title="AtrÃ¡s"/>
+                        </f:facet>
+                        <f:facet name="next">
+                            <ice:graphicImage id="nextpage_1"
+                                              url="./resources/img/graphics/arrow-next.gif"
+                                              style="border:none;"
+                                              title="Siguiente"/>
+                        </f:facet>
+                        <f:facet name="fastforward">
+                            <ice:graphicImage id="fastforward_1"
+                                              url="./resources/img/graphics/arrow-ff.gif"
+                                              style="border:none;"/>
+                        </f:facet>
+                        <f:facet name="fastrewind">
+                            <ice:graphicImage id="fastrewind_1"
+                                              url="./resources/img/graphics/arrow-fr.gif"
+                                              style="border:none;"/>
+                        </f:facet>
+                    </ice:dataPaginator>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

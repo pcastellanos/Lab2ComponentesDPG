@@ -36,6 +36,11 @@
             <to-view-id>/reporte.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>irReportesCliente</from-outcome>
+            <to-view-id>/clientesReporteView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/catalogo.xhtml</from-view-id>
@@ -78,6 +83,11 @@
             <from-outcome>verReporte</from-outcome>
             <to-view-id>/reporte.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>detalleComprasClienteView</from-outcome>
+            <to-view-id>/detalleComprasClienteView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/detalleMuebleView.xhtml</from-view-id>
@@ -105,12 +115,35 @@
         </navigation-case>
     </navigation-rule>
     
-    
+        <navigation-rule>
+        <from-view-id>/detalleComprasClienteView.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listadoClientesReporte</from-outcome>
+            <to-view-id>/clientesReporteView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>listadoVentasReporte</from-outcome>
+            <to-view-id>/reporte.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        
+    </navigation-rule>
+   
 
     <managed-bean>
         <managed-bean-name>reporteComprasBean</managed-bean-name>
         <managed-bean-class>com.losalpes.beans.ReporteComprasBean</managed-bean-class>
         <managed-bean-scope>application</managed-bean-scope>
     </managed-bean>
-        
+    
+    <navigation-rule>
+        <from-view-id>/clientesReporteView.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresarMenu</from-outcome>
+            <to-view-id>/administratorView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
 </faces-config>

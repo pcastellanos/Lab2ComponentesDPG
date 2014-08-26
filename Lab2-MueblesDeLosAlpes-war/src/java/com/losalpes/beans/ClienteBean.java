@@ -61,6 +61,14 @@ public class ClienteBean {
     public String buscar(){
         return "clientesView";
     }
+    
+    /**
+     * Acción para activar la busqueda
+     * @return 
+     */
+    public String buscarReporteCliente(){
+        return "clientesReporteView";
+    }
   
     /**
      * Obtiene todos los clientes

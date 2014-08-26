@@ -10,34 +10,87 @@ import com.losalpes.bos.Ventas;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
  *
  * @author xDEAMx
  */
-public class ServicioReporteVentasMock {
+public class ServicioReporteVentasMock implements IServicioReporteVentas {
     private List<Ventas> listadoVentas;
 
+    /**
+     * Constructor del servuicio Reporte ventas
+     */
     public ServicioReporteVentasMock() {
         this.listadoVentas = new ArrayList<Ventas>();
-        Ventas venta1= new Ventas();
+        LinkedList<String> referencias = new LinkedList<String>();
+        referencias.add("RF1");
+        referencias.add("RF2");
+        agregarCompra("1039456789", referencias, new Date());
+        
+        referencias = new LinkedList<String>();
+        referencias.add("RF1");
+        referencias.add("RF7");
+        referencias.add("RF4");
+        referencias.add("RF3");
+        referencias.add("RF2");
+        agregarCompra("0980867854", referencias, new Date());
+        
+        referencias = new LinkedList<String>();
+        referencias.add("RF7");
+        referencias.add("RF4");
+        agregarCompra("33464574734", referencias, new Date());
+        
+        referencias = new LinkedList<String>();
+        referencias.add("RF7");
+        referencias.add("RF4");
+        referencias.add("RF2");
+        referencias.add("RF8");
+        referencias.add("RF6");
+        agregarCompra("2342423432424", referencias, new Date());
+
+        referencias = new LinkedList<String>();
+        referencias.add("RF7");
+        referencias.add("RF3");
+        referencias.add("RF5");
+        referencias.add("RF2");
+        referencias.add("RF6");
+        agregarCompra("33464574734", referencias, new Date());
+                
+    }
+    /**
+     * Se encarga de agregar una nueva venta     * 
+     * @param documentoCliente
+     * @param referencias
+     * @param fecha 
+     */
+    private void agregarCompra(String documentoCliente, List<String> referencias, Date fecha ){
         ServicioClientesMock scliente = new ServicioClientesMock();
         ServicioCatalogoMock scatalogo = new ServicioCatalogoMock();
+        Ventas venta= new Ventas();
+        MuebleVenta muebleVendido;
         
-        Cliente client = scliente.obtenerPorDocumento("1039456789");
-        venta1.setCliente(client);
-        venta1.setFechaDeCompra(new Date());
         List<MuebleVenta> lmuebleventa = new ArrayList<MuebleVenta>();
-        MuebleVenta m1= new MuebleVenta(scatalogo.buscarMueble("RF1"), 3);
-        MuebleVenta m2= new MuebleVenta(scatalogo.buscarMueble("RF2"), 4);
-        lmuebleventa.add(m1);
-        lmuebleventa.add(m2);
-        venta1.setMueblesVenta(lmuebleventa);
-        venta1.setTotal(this.obtenerValorTotal(venta1));
-        this.listadoVentas.add(venta1);
+        
+        Cliente client = scliente.obtenerPorDocumento(documentoCliente);
+        venta.setCliente(client);
+        venta.setFechaDeCompra(fecha);
+        for(String referencia : referencias){
+        muebleVendido = new MuebleVenta(scatalogo.buscarMueble(referencia), (int)(Math.random()*10));
+        lmuebleventa.add(muebleVendido);
+        }
+        venta.setMueblesVenta(lmuebleventa);
+        venta.setTotal(this.obtenerValorTotal(venta));
+        this.listadoVentas.add(venta);
     }
     
+    /**
+     * Obtener el valor total de una venta conforme sus productos
+     * @param venta
+     * @return 
+     */
     public Double obtenerValorTotal(Ventas venta){
         Double total = 0.0;
         for(int i = 0; i < venta.getMueblesVenta().size() ; i++){
@@ -76,14 +129,16 @@ public class ServicioReporteVentasMock {
         SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
       for(int i=0;i<this.listadoVentas.size();i++){
            String fecha = sdf.format(this.listadoVentas.get(i).getFechaDeCompra());
-           System.out.println(i+" - "+fecha);
            if(fecha.equals(filtro)){
               listaVentasTmp.add(this.listadoVentas.get(i));
            }
         }
       return listaVentasTmp;
     }
-    
+    /**
+     * Se encarga de validartodos los productos de la venta y selecciona el producto más vendido
+     * @return 
+     */
     public String obtenerProductoConMayorVentas(){
         List<String[]> listaProductos = new ArrayList<String[]>();
         for(int i=0;i<this.listadoVentas.size();i++){
@@ -95,8 +150,9 @@ public class ServicioReporteVentasMock {
                   for(int z=0;z<listaProductos.size();z++){
                      if(listaProductos.get(z)[2].equals(muebleTmp.getMueble().getReferencia())){
                          nuevoProducto = false;
+                         
                          listaProductos.get(z)[1]=String.valueOf(Integer.parseInt(listaProductos.get(z)[1])
-                                                                 +muebleTmp.getMueble().getCantidad());
+                                                                 +muebleTmp.getCantidad());
                      }
                   }
                   if(nuevoProducto){
@@ -109,7 +165,7 @@ public class ServicioReporteVentasMock {
                 }else{
                     String[] obj = new String[3];
                     obj[0] = muebleTmp.getMueble().getNombre();
-                    obj[1] = String.valueOf(muebleTmp.getMueble().getCantidad());
+                    obj[1] = String.valueOf(muebleTmp.getCantidad());
                     obj[2] = muebleTmp.getMueble().getReferencia();
                     listaProductos.add(obj);
                 }
@@ -119,15 +175,26 @@ public class ServicioReporteVentasMock {
         int cantidadMayor = 0;
         for(int i=0;i<listaProductos.size();i++){
            if(Integer.parseInt(listaProductos.get(i)[1])>cantidadMayor){
-              System.out.println(listaProductos.get(i)[2] +" - "+listaProductos.get(i)[0]+" Total:"+listaProductos.get(i)[1]);
               producto=listaProductos.get(i)[2] +" - "+listaProductos.get(i)[0]+" Total:"+listaProductos.get(i)[1];
            }
         } 
     return producto;
     }
     
-    public void agregarRegistroDeProducto(String obj){
-    
+    /**
+     * Obtiene el reporte de un cliente
+     * @param documento
+     * @return 
+     */
+    public List<Ventas> obtenerReporteCliente(String documento){
+        List<Ventas> ventas = new LinkedList<Ventas>();
+        int longitud = listadoVentas.size();
+        for(int i=0; i< longitud; i ++){
+            if(listadoVentas.get(i).getCliente().getNumeroDocumento().equals(documento)){
+                 ventas.add(listadoVentas.get(i));
+            }
+        }
+        return ventas;
     }
     
     

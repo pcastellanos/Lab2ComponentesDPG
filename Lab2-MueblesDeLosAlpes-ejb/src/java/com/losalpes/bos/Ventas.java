@@ -5,6 +5,7 @@
 package com.losalpes.bos;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -18,11 +19,13 @@ public class Ventas {
     private Date fechaDeCompra;
 
     public List<MuebleVenta> getMueblesVenta() {
+        if(mueblesVenta==null)
+            mueblesVenta = new LinkedList<MuebleVenta>();
         return mueblesVenta;
     }
 
     public void setMueblesVenta(List<MuebleVenta> mueblesVenta) {
-        this.mueblesVenta = mueblesVenta;
+        this.getMueblesVenta().addAll(mueblesVenta);
     }
 
     public Cliente getCliente() {
@@ -48,7 +51,5 @@ public class Ventas {
     public void setFechaDeCompra(Date fechaDeCompra) {
         this.fechaDeCompra = fechaDeCompra;
     }
-    
-    
-    
+   
 }

@@ -202,18 +202,24 @@ public class CarroCompraBean {
     }
     
     public String cerrarCompra(){
-           System.out.println(" salida de cierre compra");
         Ventas ventatmp =new Ventas();
         ventatmp.setFechaDeCompra(new Date());
-        ventatmp.setMueblesVenta(this.getMuebles());
+        ventatmp.setMueblesVenta(this.getMueblesComprar());
         ventatmp.setTotal(Double.parseDouble((String.valueOf(this.getCostoTotal()))));
         Cliente c = new Cliente();
         c.setNombre(this.getLoginBean().getUsuario());
         c.setNumeroDocumento("--");
         ventatmp.setCliente(c);
         this.getReporteComprasBean().agregarVenta(ventatmp);
+       
         return "listadoMueblesVenta";
         }
+    
+    public void limpiarCarroDeCompra(){
+        for(int i=0;i<this.mueblesVenta.size();i++){
+            this.mueblesVenta.get(i).setCantidad(0);
+        }
+    }
               
     
 }
